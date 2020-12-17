@@ -1,6 +1,8 @@
 # Northumbria Books Limited assignment.
 
-## requirements
+This is an assignment for KF5002.
+
+## Requirements:
 This uses my own php library for code generation and other utility functions.
 
 ```
