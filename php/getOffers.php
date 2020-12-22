@@ -1,9 +1,11 @@
 <?php
 try {
+	// include details for db connection
+	require_once('details.php');
 	// include the file for the database connection
-	require_once('functions.php');
+	require_once('../lib/phpUtils/utils.php');
 	// get database connection
-	$dbConn = getConnection();
+	$dbConn = getConnection($details);
 
 	if (isset($_REQUEST['useJSON'])) {
 		// echo what getJSONOffer returns
