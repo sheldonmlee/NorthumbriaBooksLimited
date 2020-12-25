@@ -1,5 +1,5 @@
 // define pages
-const URL = "php/default.php?page="
+const URL = "pages/default.php?page="
 const URL_HOME =	URL + "home.php";
 const URL_ADMIN	=	URL + "admin.php";
 const URL_ORDER =	URL + "order.php";
