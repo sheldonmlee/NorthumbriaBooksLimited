@@ -1,3 +1,6 @@
 # ignore libs
 lib/*
 !lib
+
+# ignore details
+*details.php
