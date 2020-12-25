@@ -1,5 +1,5 @@
 <?php
-require_once("../lib/phpUtils/utils.php");
+require_once("../php/includes.php");
 require_once("loginForm.php");
 
 $page = isset($_REQUEST["page"])? $_REQUEST["page"] : "home.php";
