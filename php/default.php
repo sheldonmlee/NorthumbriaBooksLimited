@@ -1,41 +1,15 @@
 <?php
 require_once("../lib/phpUtils/utils.php");
-$page = isset($_REQUEST["page"])? $_REQUEST["page"] : "home";
+require_once("loginForm.php");
 
-switch($page) {
-case "home":
-	getHome();
-	break;
-case "admin":
-	getAdmin();
-	break;
+$page = isset($_REQUEST["page"])? $_REQUEST["page"] : "home.php";
+$page_location = "../pages/$page";
+
+if (file_exists($page_location)) {
+	echo getLoginForm();
+	include $page_location;
 }
-
-function getHome()
-{
-	getLoginForm();
-	echo "<p>Home page.</p>";
+else {
+	echo "<h1>Page Not found</h1>";
 }
-
-function getAdmin()
-{
-	getLoginForm();
-	echo "<p>Admin page.</p>";
-}
-
-function getLoginForm()
-{
-	$form = array(
-		"method" =>	Method::POST,
-		"action" => "login.php",	
-		"inputs" => array(
-			array("type" => Input::TEXT, "label" => "username :", "name" => "username"),
-			array("type" => Input::TEXT, "label" => "password :", "name" => "password"),
-			array("type" => Input::SUBMIT)
-		)
-	);
-	echo generateForm($form);
-}
-
-
 ?>

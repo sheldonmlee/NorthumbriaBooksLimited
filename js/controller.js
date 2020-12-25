@@ -1,33 +1,34 @@
-window.onload = function() {
+// define pages
+const URL = "php/default.php?page="
+const URL_HOME =	URL + "home.php";
+const URL_ADMIN	=	URL + "admin.php";
+const URL_ORDER =	URL + "order.php";
 
-	const URL = "php/default.php";
-	const URL_HOME = URL + "?page=home";
-	const URL_ADMIN = URL + "?page=admin";
+//register callbacks
+document.getElementById("nav_home").onclick =	() => getBody(URL_HOME);
+document.getElementById("nav_admin").onclick =	() => getBody(URL_ADMIN);
+document.getElementById("nav_order").onclick =	() => getBody(URL_ORDER);
 
-	// register callbacks
-	document.getElementById("nav_home").onclick = loadHome;
-	document.getElementById("nav_admin").onclick = loadAdmin;
+getBody(URL_HOME);
 
-	loadHome();
-	
-	function loadHome()
-	{
-		fetch(URL_HOME).then(handleResponse)
-		console.log("home");
-	}
-
-	function loadAdmin()
-	{
-		fetch(URL_ADMIN).then(handleResponse)
-		console.log("admin");
-	}
-
-	function handleResponse(response)
-	{
-		const contentType = response.headers.get('content-type');
-		if (contentType.includes("text/html")) {
-			response.text().then((text) => { document.getElementById("main").innerHTML = text })
-		}
-	}
-
+function getPage(page_name)
+{
+	getBody(URL+page_name);
 }
+
+function getBody(url)
+{
+	fetch(url).then(handleResponse);
+}
+
+// helper function to insert text content into main.
+function handleResponse(response)
+{
+	const contentType = response.headers.get('content-type');
+	if (contentType.includes("text/html")) {
+		response.text()
+			.then((text) => { document.getElementById("main").innerHTML = text })
+			.catch(err => console.log("Something went wrong.", err))
+	}
+}
+
