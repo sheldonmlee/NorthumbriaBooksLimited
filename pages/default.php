@@ -1,6 +1,6 @@
 <?php
 require_once("../php/includes.php");
-require_once("loginForm.php");
+require_once("../php/loginForm.php");
 
 $page = isset($_REQUEST["page"])? $_REQUEST["page"] : "home.php";
 $page_location = "../pages/$page";
