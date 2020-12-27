@@ -15,7 +15,7 @@ $book = $results->fetch();
 
 $form= array(
 	"method" => Method::GET,
-	"action" => "",
+	"action" => "php/editBook.php",
 	"inputs" => array (
 		array("type" => Input::TEXT, "label" => "ISBN:", "name" => "bookISBN", "value" => $book["bookISBN"], "readonly"),
 		array("type" => Input::TEXT, "label" => "Title", "name" => "bookTitle", "value" => $book["bookTitle"]),
