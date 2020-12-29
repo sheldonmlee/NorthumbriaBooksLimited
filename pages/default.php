@@ -6,7 +6,7 @@ $page = isset($_REQUEST["page"])? $_REQUEST["page"] : "home.php";
 $page_location = "../pages/$page";
 
 if (file_exists($page_location)) {
-	echo getLoginForm();
+	echo getLogin();
 	include $page_location;
 }
 else {

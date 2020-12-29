@@ -1,7 +1,7 @@
 <?php
 require_once("../php/includes.php");
+require_once("../php/details.php");
 
-print_r($_GET);
 $bookISBN = defaultNull($_GET, "bookISBN");
 
 $dbConn = getConnection($details);
