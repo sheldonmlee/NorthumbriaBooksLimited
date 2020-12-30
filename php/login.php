@@ -1,6 +1,6 @@
 <?php
 include("includes.php");
-const REDIRECT = "../index.html";
+const REDIRECT = "../";
 
 // if logout is set, logout.
 // if login is set, login.

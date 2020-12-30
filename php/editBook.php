@@ -2,7 +2,7 @@
 require_once("includes.php");
 require_once("details.php");
 
-$redirect_location = "../index.html";
+$redirect_location = "../#/admin";
 
 $bookISBN = defaultNull($_GET, "bookISBN");
 $bookTitle = defaultNull($_GET, "bookTitle");

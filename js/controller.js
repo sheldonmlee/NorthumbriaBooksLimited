@@ -1,15 +1,25 @@
+//import {Router} from "./router.js";
+
+"use strict"
+
 // define pages
-const URL = "pages/default.php?page="
+const URL = "pages/default.php?page=";
 const URL_HOME =	URL + "home.php";
 const URL_ADMIN	=	URL + "admin.php";
 const URL_ORDER =	URL + "order.php";
 
-//register callbacks
-document.getElementById("nav_home").onclick =	() => getBody(URL_HOME);
-document.getElementById("nav_admin").onclick =	() => getBody(URL_ADMIN);
-document.getElementById("nav_order").onclick =	() => getBody(URL_ORDER);
+const router = new Router();
+router.add("/", () => getPage("home.php"));
+router.add("/admin", () => getPage("admin.php"));
+//router.add("/admin/edit" () => getPage("editbooksForm.php"));
 
-getBody(URL_HOME);
+window.onload = () => router.route();
+window.onhashchange = () => router.route();
+
+document.getElementById("nav_home").onclick = () => Router.pushHistory("/");;
+document.getElementById("nav_admin").onclick = () => Router.pushHistory("/admin");
+
+getPage("home.php")
 
 function getPage(page_name)
 {
