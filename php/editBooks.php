@@ -13,7 +13,7 @@ function getEditBooksList()
 	$output .= "<li>\n";
 	foreach($results as $row) {
 		$output .= "<li>
-			<button onclick=\"getBody('pages/editBookForm.php?bookISBN={$row["bookISBN"]}')\">Edit</button>
+			<button onclick=\"Router.pushHistory('/admin/edit?bookISBN={$row["bookISBN"]}')\">Edit</button>
 			{$row["bookTitle"]}
 			</li>\n";
 	}
