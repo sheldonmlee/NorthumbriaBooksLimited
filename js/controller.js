@@ -3,15 +3,12 @@
 "use strict"
 
 // define pages
-const URL = "pages/default.php?page=";
-const URL_HOME =	URL + "home.php";
-const URL_ADMIN	=	URL + "admin.php";
-const URL_ORDER =	URL + "order.php";
+const PAGE_DIR = "pages/default.php?page=";
 
 const router = new Router();
-router.add("/", () => getPage("home.php"));
-router.add("/admin", () => getPage("admin.php"));
-//router.add("/admin/edit" () => getPage("editbooksForm.php"));
+router.add("/", (args) => getPage("home.php", args));
+router.add("/admin", (args) => getPage("admin.php", args));
+router.add("/admin/edit", (args) => getPage("editBookForm.php", args));
 
 window.onload = () => router.route();
 window.onhashchange = () => router.route();
@@ -21,13 +18,14 @@ document.getElementById("nav_admin").onclick = () => Router.pushHistory("/admin"
 
 getPage("home.php")
 
-function getPage(page_name)
+function getPage(page_name, args="")
 {
-	getBody(URL+page_name);
+	getBody(PAGE_DIR+page_name, args);
 }
 
-function getBody(url)
+function getBody(url, args="")
 {
+	if (args != "") url +='&'+args.slice(1);
 	fetch(url).then(handleResponse);
 }
 
