@@ -11,10 +11,15 @@ SELECT bookISBN, bookTitle, bookYear, bookPrice, catID, pubID FROM NBL_books
 WHERE bookISBN = $bookISBN;
 ");
 
+if (!$results) {
+	echo "<h2>No Results</h2>\n";
+	exit;
+}
+
 $book = $results->fetch();
 
 $form= array(
-	"method" => Method::GET,
+	"method" => Method::POST,
 	"action" => "php/editBook.php",
 	"inputs" => array (
 		array("type" => Input::TEXT, "label" => "ISBN:", "name" => "bookISBN", "value" => $book["bookISBN"], "readonly"),

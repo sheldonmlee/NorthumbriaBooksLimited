@@ -4,12 +4,12 @@ require_once("details.php");
 
 $redirect_location = "../#/admin";
 
-$bookISBN = defaultNull($_GET, "bookISBN");
-$bookTitle = defaultNull($_GET, "bookTitle");
-$bookYear = defaultNull($_GET, "bookYear");
-$bookPrice = defaultNull($_GET, "bookPrice");
-$catID = defaultNull($_GET, "catID");
-$pubID = defaultNull($_GET, "pubID");
+$bookISBN = defaultNull($_POST, "bookISBN");
+$bookTitle = defaultNull($_POST, "bookTitle");
+$bookYear = defaultNull($_POST, "bookYear");
+$bookPrice = defaultNull($_POST, "bookPrice");
+$catID = defaultNull($_POST, "catID");
+$pubID = defaultNull($_POST, "pubID");
 
 // redirect if any fields are empty
 {
@@ -26,14 +26,24 @@ $pubID = defaultNull($_GET, "pubID");
 $dbConn = getConnection($details);
 $dbConn->setAttribute(pdo::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$sql = "
+$sql1 = "
 UPDATE NBL_books
 SET bookTitle = :bookTitle, bookYear = :bookYear, bookPrice = :bookPrice, catID = :catID, pubID = :pubID
 WHERE bookISBN = :bookISBN;
 ";
 
-$sth = $dbConn->prepare($sql);
+$sql2 = "
+SELECT * FROM NBL_books
+JOIN NBL_publisher ON NBL_publisher.pubID = NBL_books.pubID
+JOIN NBL_category ON NBL_category.catID = NBL_books.catID
+WHERE bookISBN = :bookISBN;
+";
+
+$book = null;
+
 try {
+
+	$sth = $dbConn->prepare($sql1);
 	$sth->execute(array(
 		":bookTitle" => $bookTitle,
 		":bookYear" => $bookYear,
@@ -42,20 +52,14 @@ try {
 		":pubID" => $pubID,
 		":bookISBN" => $bookISBN,
 	));
+
+	$sth = $dbConn->prepare($sql2);
+	$sth->execute(array("bookISBN" => $bookISBN));
+	$book = $sth->fetch();
 }
 catch(Exception $e) {
 	echo "<h2>Error</h2>\n<p>{$e->getMessage()}</p>\n";
 }
-
-$sql = "
-SELECT * from NBL_books
-WHERE bookISBN = :bookISBN;
-";
-
-$sth = $dbConn->prepare($sql);
-$sth->execute(array("bookISBN" => $bookISBN));
-
-$book = $sth->fetch();
 
 echo "
 <h2>Book updated:</h2>\n
@@ -64,8 +68,8 @@ echo "
 <li>Title: {$book["bookTitle"]}</li>\n
 <li>Year: {$book["bookYear"]}</li>\n
 <li>Price: {$book["bookPrice"]}</li>\n
-<li>CategoryID: {$book["catID"]}</li>\n
-<li>PublisherID: {$book["pubID"]}</li>\n
+<li>Category: {$book["catDesc"]}</li>\n
+<li>Publisher: {$book["pubName"]}</li>\n
 </ul>\n
 <a href=\"$redirect_location\">Go back.</a>\n
 ";
