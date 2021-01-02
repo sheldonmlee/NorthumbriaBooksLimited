@@ -2,7 +2,7 @@
 require_once("includes.php");
 require_once("details.php");
 
-$redirect_location = "../#/admin";
+$redirect_location = ROOT."/pages/default.php?page=admin.php";
 
 $bookISBN = defaultNull($_POST, "bookISBN");
 $bookTitle = defaultNull($_POST, "bookTitle");

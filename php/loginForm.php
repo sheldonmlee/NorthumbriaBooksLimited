@@ -2,7 +2,6 @@
 require_once("includes.php");
 require_once("login.php");
 
-
 function getLogin()
 {
 	if (loggedIn()) return getLogout();
@@ -13,7 +12,7 @@ function getLoginForm()
 {
 	$form = array(
 		"method" =>	Method::POST,
-		"action" => "php/login.php?login",	
+		"action" => ROOT."/php/login.php?login",	
 		"inputs" => array(
 			array("type" => Input::TEXT, "label" => "username :", "name" => "username"),
 			array("type" => Input::PASSWORD, "label" => "password :", "name" => "password"),
@@ -26,7 +25,7 @@ function getLoginForm()
 function getLogout()
 {
 	initSession();	
-	$str = "<p>Logged in as {$_SESSION["username"]}<br><a href=\"php/login.php?logout\">Logout</a></p>";
+	$str = sprintf("<p>Logged in as {$_SESSION["username"]}<br><a href=\"%s/php/login.php?logout\">Logout</a></p>", ROOT);
 	return $str;
 }
 ?>

@@ -20,7 +20,7 @@ $book = $results->fetch();
 
 $form= array(
 	"method" => Method::POST,
-	"action" => "php/editBook.php",
+	"action" => "default.php?page=../php/editBook.php",
 	"inputs" => array (
 		array("type" => Input::TEXT, "label" => "ISBN:", "name" => "bookISBN", "value" => $book["bookISBN"], "readonly"),
 		array("type" => Input::TEXT, "label" => "Title", "name" => "bookTitle", "value" => $book["bookTitle"]),
