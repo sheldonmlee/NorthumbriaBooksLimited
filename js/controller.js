@@ -1,20 +1,30 @@
-//import {Router} from "./router.js";
-
 "use strict"
 
-// define pages
 const PAGE_DIR = "pages/default.php?page=";
 
+// add routes
 const router = new Router();
 router.add("/", (args) => getPage("home.php", args));
 router.add("/admin", (args) => getPage("admin.php", args));
 router.add("/admin/edit", (args) => getPage("editBookForm.php", args));
+router.add("/order", (args) => getPage("order.php", args));
 
 window.onload = () => router.route();
 window.onhashchange = () => router.route();
 
 document.getElementById("nav_home").onclick = () => Router.pushHistory("/");;
 document.getElementById("nav_admin").onclick = () => Router.pushHistory("/admin");
+document.getElementById("nav_order").onclick = () => Router.pushHistory("/order");
+
+// Check for change in page
+const mainNode = document.getElementById("main");
+const config = { childList: true }
+
+const observer = new MutationObserver(function() {
+	// if orderForm exists, run js for form checking();
+	if (document.getElementById("orderForm")) checkOrderForm();
+});
+observer.observe(mainNode, config);
 
 getPage("home.php")
 
