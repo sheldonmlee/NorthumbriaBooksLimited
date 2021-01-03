@@ -12,15 +12,20 @@ $catID = defaultNull($_POST, "catID");
 $pubID = defaultNull($_POST, "pubID");
 
 // redirect if any fields are empty
-{
-	$arr = array($bookISBN, $bookTitle, $bookYear, $bookPrice, $catID, $pubID);
-	foreach($arr as $item) {
-		if (empty($item)){
-			echo "<h2>Please fill in all fields.</h2>\n";
-			echo "<a href=\"$redirect_location\">Go back.</a>\n";
-			exit;
-		}
+$arr = array($bookISBN, $bookTitle, $bookYear, $bookPrice, $catID, $pubID);
+foreach($arr as $item) {
+	if (empty($item)){
+		echo "<h2>Please fill in all fields.</h2>\n";
+		echo "<a href=\"$redirect_location\">Go back.</a>\n";
+		exit;
 	}
+}
+
+// check numeric fieldr are numeric
+if (!is_numeric($bookPrice) or !is_numeric($bookYear)) {
+	echo "<h2>Please make sure Year or Price is numeric.</h2>\n";
+	echo "<a href=\"$redirect_location\">Go back.</a>\n";
+	exit;
 }
 
 $dbConn = getConnection($details);
