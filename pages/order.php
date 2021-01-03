@@ -1,4 +1,4 @@
 <?php
-include "../php/orderBooksForm.php";
+include "php/orderBooksForm.php";
 ?>
-<script src="../js/checkOrderForm.js">checkOrderForm()</script>
+<script src="js/checkOrderForm.js">checkOrderForm()</script>
