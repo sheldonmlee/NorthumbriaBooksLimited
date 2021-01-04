@@ -13,6 +13,7 @@
 			<a id="nav_order" href="default.php?page=order.php">order</a>
 		</nav>
 
+		<main>
 <?php
 require_once("php/includes.php");
 require_once("php/loginInterface.php");
@@ -35,5 +36,6 @@ else {
 	echo "<p>$php_location</p>\n";
 }
 ?>
+		</main>
 	</body>
 </html>
