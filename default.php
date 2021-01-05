@@ -25,12 +25,13 @@ $page_location = "pages/$page";
 $php_location = "php/$page";
 
 if (file_exists($page_location)) {
-	echo "<section id=\"login\">";
+	echo "<section id=\"login\">\n";
+	echo "<h2>Login:</h2>\n";
 	echo LoginInterface::getLogin();
-	echo "</section>";
-	echo "<section id=\"content\">";
+	echo "</section>\n";
+	echo "<section id=\"content\">\n";
 	include $page_location;
-	echo "</section>";
+	echo "</section>\n";
 }
 else if (file_exists($php_location)) {
 	include $php_location;
