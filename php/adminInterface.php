@@ -1,7 +1,11 @@
 <?php
 require_once("includes.php");
+#
+# Encapsulates admin interface
+#
 class AdminInterface
 {
+	// Get form to edit single book;
 	public static function getEditBookForm()
 	{
 		require("details.php");
@@ -53,6 +57,7 @@ class AdminInterface
 		return generateForm($form);
 	}
 
+	// Get a list of all bokos to edit.
 	public static function getEditBooksList()
 	{
 		require("details.php");
@@ -61,7 +66,6 @@ class AdminInterface
 		$results = $dbConn->query("SELECT bookISBN, bookTitle FROM NBL_books");
 
 		$output = "<div id=\"editBooks\">\n";
-		$output .= "<li>\n";
 		foreach($results as $row) {
 			$output .= "<li>
 				<a href=\"default.php?page=edit.php&bookISBN={$row["bookISBN"]}\">Edit</a>
