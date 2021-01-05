@@ -10,6 +10,9 @@ class AdminInterface
 	{
 		require("details.php");
 		$bookISBN = defaultNull($_GET, "bookISBN");
+		if (empty($bookISBN)) {
+			return "<h2>No ISBN specified</h2>\n";
+		}
 
 		$dbConn = getConnection($details);
 
@@ -19,7 +22,7 @@ class AdminInterface
 		");
 
 		if (!$results) {
-			echo "<h2>No Results</h2>\n";
+			return "<h2>No Results</h2>\n";
 			exit;
 		}
 
@@ -54,7 +57,12 @@ class AdminInterface
 				array("type" => Input::SUBMIT)
 			)
 		);
-		return generateForm($form);
+
+		$output = generateForm($form);
+
+		$dbConn = null;
+		$book = null;
+		return $output;
 	}
 
 	// Get a list of all bokos to edit.
