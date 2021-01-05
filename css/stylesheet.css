@@ -1,7 +1,38 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * Main content layout.
+ */
+
+main {
+	margin: 1em;
+}
+
+/* move login to top right of page */
+#login {
+	float: right;
+}
+
+/* 
+ * Navigation Bar
+ */
+
 nav {
+	background: black;
 	display: flex;
 }
 
-nav > a {
-	margin: 1em;
+nav > a { 
+	margin: 1em; 
+	color:white;
+	text-decoration: none;
 }
+
+nav > a:hover {
+	color: black;
+	background: white;
+}
+

@@ -8,9 +8,10 @@
 
 	<body>
 		<nav>
-			<a id="nav_home"  href="default.php?page=home.php">home</a>
-			<a id="nav_admin" href="default.php?page=admin.php">admin</a>
-			<a id="nav_order" href="default.php?page=order.php">order</a>
+			<a id="nav_home"	href="default.php?page=home.php">HOME</a>
+			<a id="nav_admin"	href="default.php?page=admin.php">ADMIN</a>
+			<a id="nav_order"	href="default.php?page=order.php">ORDER</a>
+			<a id="nav_credits"	href="default.php?page=credits.php">CREDITS</a>
 		</nav>
 
 		<main>
@@ -24,8 +25,12 @@ $page_location = "pages/$page";
 $php_location = "php/$page";
 
 if (file_exists($page_location)) {
+	echo "<section id=\"login\">";
 	echo LoginInterface::getLogin();
+	echo "</section>";
+	echo "<section id=\"content\">";
 	include $page_location;
+	echo "</section>";
 }
 else if (file_exists($php_location)) {
 	include $php_location;
