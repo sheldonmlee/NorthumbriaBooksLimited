@@ -1,4 +1,4 @@
-<h1>Home</h1>
+<h1>NorthumbriaBooksLimited</h1>
 <h2>Offers</h2>
 <aside id="offers">
 	<!-- Generate HTML !-->
